@@ -1,21 +1,21 @@
 import './style.css';
-import 'paper';
+import Game from './utils/game';
 
-var canvas = document.querySelector('#canvas');
-var context = canvas.getContext("2d");
-// canvas.width = width;
-// canvas.height = height;
+var theWitness = new Game();
+
+function gameLoop() {
+    setTimeout(() => {
+      // Clear Screen
+      theWitness.context.clearRect(0, 0, theWitness.canvas.width, theWitness.canvas.height);
+
+      requestAnimationFrame(gameLoop);
+
+      // Draw Game Elements
+      theWitness.drawPanel();
+      theWitness.drawPuzzle();
 
 
-// Base Canvas Styling
-// canvas.style.backgroundColor = 'red';
-canvas.width = window.innerWidth;
-canvas.height = `${canvas.getBoundingClientRect().width}`;
+    }, theWitness.config.refreshInterval);
+};
 
-var panelBase = new Rectangle(new Point(0,0), new Size(10,10));
-panelBase.fillColor = 'blue';
-
-context.beginPath();
-context.fillStyle = '#F4AE00';
-context.closePath();
-context.fillRect(0,0,canvas.width,canvas.height);
+gameLoop();
