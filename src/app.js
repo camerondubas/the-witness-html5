@@ -1,7 +1,10 @@
 import './style.css';
 import Game from './utils/game';
+import GridPuzzle from './puzzle-types/grid-puzzle';
 
-var theWitness = new Game();
+let puzzleTypes = {GridPuzzle};
+
+var theWitness = new Game(puzzleTypes);
 
 function gameLoop() {
     setTimeout(() => {
@@ -13,6 +16,8 @@ function gameLoop() {
       // Draw Game Elements
       theWitness.drawPanel();
       theWitness.drawPuzzle();
+      theWitness.drawGrid();
+      theWitness.drawPuzzleBoundingBox();
 
 
     }, theWitness.config.refreshInterval);
